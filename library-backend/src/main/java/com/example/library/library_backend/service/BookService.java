@@ -1,5 +1,4 @@
 package com.example.library.library_backend.service;
-package com.example.library.service;
 
 import com.example.library.library_backend.model.Book;
 import com.example.library.library_backend.repo.BookRepository;
