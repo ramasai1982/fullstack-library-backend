@@ -1,5 +1,6 @@
 package com.example.library.library_backend.service;
 
+import com.example.library.library_backend.exception.NoSuchElementException;
 import com.example.library.library_backend.model.Book;
 import com.example.library.library_backend.repo.BookRepository;
 import jakarta.validation.Valid;
@@ -29,7 +30,8 @@ public class BookService {
 
     // 3. Get book by ID
     public Optional<Book> getBookById(Long id) {
-        return bookRepository.findById(id);
+        return Optional.ofNullable(bookRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Book not found with ID: " + id)));
     }
 
     // 4. Update book by ID
