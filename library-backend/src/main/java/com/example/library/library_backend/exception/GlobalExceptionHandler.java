@@ -22,10 +22,10 @@ public class GlobalExceptionHandler {
     }
 
     // Handle resource not found errors
-    @ExceptionHandler(java.util.NoSuchElementException.class)
+    @ExceptionHandler(NoSuchElementException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Map<String, String> handleResourceNotFound(java.util.NoSuchElementException ex) {
-        return Map.of("error", "Resource not found");
+    public Map<String, String> handleResourceNotFound(NoSuchElementException ex) {
+        return Map.of("error", "Resource not found", "message", ex.getMessage());
     }
 
     // Handle generic errors
