@@ -54,4 +54,11 @@ public class BookController {
                 ? ResponseEntity.noContent().build()
                 : ResponseEntity.notFound().build();
     }
+
+    // 6. Search boon
+    @GetMapping("/search")
+    public List<Book> searchBooks(@RequestParam(required = false) String title,
+                                  @RequestParam(required = false) String author) {
+        return bookService.searchBooks(title, author);
+    }
 }

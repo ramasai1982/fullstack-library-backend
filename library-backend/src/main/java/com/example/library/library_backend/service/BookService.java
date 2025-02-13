@@ -52,5 +52,18 @@ public class BookService {
         }
         return false;
     }
+
+    // 6. Search book by Title, Author or Title and Author
+    public List<Book> searchBooks(String title, String author) {
+        if (title != null && author != null) {
+            return bookRepository.findByTitleContainingIgnoreCaseAndAuthorContainingIgnoreCase(title, author);
+        } else if (title != null) {
+            return bookRepository.findByTitleContainingIgnoreCase(title);
+        } else if (author != null) {
+            return bookRepository.findByAuthorContainingIgnoreCase(author);
+        } else {
+            return bookRepository.findAll(); // if no param then all books are returned
+        }
+    }
 }
 
