@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -21,11 +22,11 @@ public class GlobalExceptionHandler {
         return errors;
     }
 
-    // Handle resource not found errors
+    // Handle "Book Not Found" scenario
     @ExceptionHandler(NoSuchElementException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Map<String, String> handleResourceNotFound(NoSuchElementException ex) {
-        return Map.of("error", "Resource not found", "message", ex.getMessage());
+    public Map<String, String> handleResourceNotFound(java.util.NoSuchElementException ex) {
+        return Map.of("error", "Resource not found");
     }
 
     // Handle generic errors
